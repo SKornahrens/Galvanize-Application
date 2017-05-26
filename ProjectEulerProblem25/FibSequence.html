@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+Stephen Kornahrens
+Project Euler 25: What is the first term in the Fibonacci sequence to contain 1000 digits?
+https://projecteuler.net/problem=25
+
+Note from Steve: While this code will provide the answer, javascript variables unfortunately cannot such a large value. Once the while loops for a int_count of 1477 the loop will halt as the variable cur_value will contain an infinite value. 
+
+Please see FibSequence.java for a capable solution.
+ -->
+
+
+<html>
+<head>
+	<title>Project Euler Problem 25</title>
+</head>
+<body>
+<h3>1000-digit Fibonacci number</h3>
+<p>Built in is a while loop that will iterate through the Fibonacci terms until it finds a term with a value containing >= 1000 digits. This is a massive number. I, unfortunately, learned that javascript cannot handle this large of an integer. The loop will time out once it reaches an infinite term value at iteration 1477. Each iteration is logged in the console for you to review. If javascript was capable of providing the solution it would appear below this paragraph. The if statement built into the while loop would have wrote to the paragraph element with the id of "fib".
+<br><br>
+Since Javascript could not support please see FibSequence.java for the solution. Thanks to the BigInteger class I was able to solve this problem. Myt thought process for my code is provided in the .java file.
+</p>
+<p id="fib"></p>
+
+<script>
+var fibone = 1;
+var fibtwo = 1;
+var int_count = 3;
+var cur_value = 0;
+
+while (cur_value <= 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) {
+    cur_value = fibone + fibtwo;
+    console.log("Current Fibonacci number is: " + fibone + "+" + fibtwo + "=" + cur_value + " at term " + int_count);
+    fibone = fibtwo;
+    fibtwo = cur_value;
+
+
+
+        if (cur_value >= 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) {
+        	document.getElementById('fib').innerHTML = "The Fibonacci reached the limit of javascript's integer value at: " + int_count;
+        	break;
+        }
+    
+    int_count++;
+
+}
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>
+
+<!-- JAVA CODE
+import java.math.BigInteger;
+
+public class Euler25 {
+  public static void main(String[] args) {
+    int fibone = 1;
+    int fibtwo = 1;
+    int cur_value = 0;
+    int int_count - 3;
+    BigInteger goal = (new BigInteger("10")).pow(999);
+   
+    while (BigInteger.valueOf(cur_value).compareTo(goal) < 0) {
+        cur_value = fibone + fibtwo;
+        fibone = fibtwo;
+        fibtwo = cur_value;
+        
+        int_count++;
+    }
+    System.out.printf("The Fibonacci reaches a value of over one thousand digits at the index " + int_count);
+  }
+}
+
+
